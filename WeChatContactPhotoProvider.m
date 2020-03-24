@@ -47,8 +47,7 @@
       if (!profileURLStr) [promise reject];
       NSMutableArray *items2 = [NSMutableArray arrayWithArray:[profileURLStr componentsSeparatedByString:@"/"]];
       [items2 removeLastObject];
-      profileURLStr = [items2 componentsJoinedByString:@"/"];
-      profileURLStr = [profileURLStr stringByAppendingString:@"/0"];
+      profileURLStr = [[items2 componentsJoinedByString:@"/"] stringByAppendingString:@"/0"];
       NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:profileURLStr] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [promise resolveWithImage:[UIImage imageWithData:data]];
       }];
