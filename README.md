@@ -8,3 +8,5 @@ Show WeChat users' profile pictures in ShortLook when you receive a WeChat notif
 # Changelog
 ## v1.0
 Initial release
+## v1.0.1
+Fixed groupchat notifications

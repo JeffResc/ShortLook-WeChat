@@ -16,7 +16,11 @@
 @implementation WeChatContactPhotoProvider
 
 - (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification {
-  NSString *contactID = notification.applicationUserInfo[@"u"];
+  NSString *contactID;
+  contactID = notification.applicationUserInfo[@"real_u"];
+  if (!contactID) {
+    contactID = notification.applicationUserInfo[@"u"];
+  }
   if (!contactID) return nil;
   DDNotificationContactPhotoPromiseOffer *offer = [[NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") alloc] initWithPhotoIdentifier:contactID];
     [offer fulfillWithBlock:^(DDNotificationContactPhotoPromise *promise) {
