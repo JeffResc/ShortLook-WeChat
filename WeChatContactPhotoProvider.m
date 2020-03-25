@@ -16,11 +16,7 @@
 @implementation WeChatContactPhotoProvider
 
 - (DDNotificationContactPhotoPromiseOffer *)contactPhotoPromiseOfferForNotification:(DDUserNotification *)notification {
-  NSString *contactID;
-  contactID = notification.applicationUserInfo[@"real_u"];
-  if (!contactID) {
-    contactID = notification.applicationUserInfo[@"u"];
-  }
+  NSString *contactID = notification.applicationUserInfo[@"u"];
   if (!contactID) return nil;
   DDNotificationContactPhotoPromiseOffer *offer = [[NSClassFromString(@"DDNotificationContactPhotoPromiseOffer") alloc] initWithPhotoIdentifier:contactID];
     [offer fulfillWithBlock:^(DDNotificationContactPhotoPromise *promise) {
@@ -49,9 +45,9 @@
       sqlite3_finalize(statement);
       sqlite3_close(db);
       if (!profileURLStr) [promise reject];
-      NSMutableArray *items2 = [NSMutableArray arrayWithArray:[profileURLStr componentsSeparatedByString:@"/"]];
-      [items2 removeLastObject];
-      profileURLStr = [[items2 componentsJoinedByString:@"/"] stringByAppendingString:@"/0"];
+      NSMutableArray *items = [NSMutableArray arrayWithArray:[profileURLStr componentsSeparatedByString:@"/"]];
+      [items removeLastObject];
+      profileURLStr = [[items componentsJoinedByString:@"/"] stringByAppendingString:@"/0"];
       NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:profileURLStr] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         [promise resolveWithImage:[UIImage imageWithData:data]];
       }];
