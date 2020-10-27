@@ -24,6 +24,7 @@ deploy:
     secure: AK2gTHQFf9t2m26rpyqBBSAarklQKuq6KYVx+HTohDCmZTf5BY2XH41U2ptHsXfI+4VRCnAX2yQvSi+J8u62iGzOwNQ94WPAztRzRW8FxDRSZF9lmGKOFjO9AYM/HsjBBLgVKx0qF0ORK+i3LoXgARfctxEA2w21vXX61tsHdo5Xje8xw3bV/l3HUWs9msPV2aqZQFIDbWg5x7v8Bqs3bx07G5u0ztjvDXxxynvsAAfp/gLqPR1m7zLwltGGIdGMJUd+MwLPTr9c6pMb6o64zotiMiO08mUOyczqW6l5s5URZAGLqa53YCccvX8z3vEmxKIU+kuqZBYECxQbHe8aXXbXbToGRQBRD07/Jrt4ARhYEWCu0iFUaFQSVDRaQeGRTNrUdFR4JKndpNNoO4VaYqQJ8GXSBfevzqPofatZQG5QtjpvDsvAaZ9AKt6TjB5kr4+kaHO4mWCtJIpXOAam0chCno4etWGraL8mMMpbdWfKs+avkvPlXMXDOdlOwUfo/+rqqeWV6KPSlPlhDNRwpnMMRgMpqYE3RuAuVTHrEeLOYDeFPhndeNOAZISBpzo+TN1BliMUcUEyV/FNmSqxCeK5UU1Iq2Nkojt1su0t37hxKCJaZiFIGKS0QgK7lpRhsPJXX2j/YCUzCW+GQVtpaksLTpjf2R7MfkT5z5sWFz8=
   file: $FILENAME
   skip_cleanup: true
-branches:
-  except:
-  - "/^untagged/"
+  on:
+    branches:
+      only:
+        - release
