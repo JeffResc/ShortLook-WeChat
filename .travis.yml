@@ -28,3 +28,6 @@ deploy:
     branches:
       only:
         - release
+branches:
+  except:
+  - /^untagged/
