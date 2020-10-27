@@ -17,7 +17,7 @@ script:
 before_deploy:
 - git config --local user.name "Jeff Rescignano"
 - git config --local user.email "jeff@jeffresc.dev"
-- git tag -a v$VERSION -m "$DESCRIPTION"
+- if [ "$TRAVIS_BRANCH" == "release" ]; then git tag -a v$VERSION -m "$DESCRIPTION"; fi
 deploy:
   provider: releases
   api_key:
